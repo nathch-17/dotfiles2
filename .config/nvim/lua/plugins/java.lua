@@ -2,21 +2,30 @@ return {
   "nvim-java/nvim-java",
   ft = "java",
   config = function()
-    require("java").setup()
-    require("lspconfig").jdtls.setup({})
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    -- --- AJOUT DES RACCOURCIS POUR L'EXÉCUTION ---
-    -- F5 pour Lancer / Debugger le code
-    vim.keymap.set("n", "<F5>", function() require("dap").continue() end, { desc = "Lancer/Debug Java" })
+    require("java").setup({
+      jdtls = {
+        capabilities = capabilities,
+      },
+    })
 
-    -- Shift+F5 pour arrêter l'exécution
-    vim.keymap.set("n", "<S-F5>", function() require("dap").terminate() end, { desc = "Arrêter Java" })
+    -- --- KEYMAPS JAVA ---
 
-    -- F9 pour mettre un point d'arrêt (Breakpoint) sur la ligne
-    vim.keymap.set("n", "<F9>", function() require("dap").toggle_breakpoint() end, { desc = "Point d'arrêt" })
+    vim.keymap.set("n", "<F5>", function()
+      require("dap").continue()
+    end, { desc = "Lancer/Debug Java" })
 
+    vim.keymap.set("n", "<S-F5>", function()
+      require("dap").terminate()
+    end, { desc = "Stop Java" })
 
-    -- Raccourci pour ouvrir le menu de génération (Getters, Setters, Equals, Constructeurs...)
-    vim.keymap.set("n", "<leader>g", vim.lsp.buf.code_action, { desc = "Générer du code Java" })
-  end
+    vim.keymap.set("n", "<F9>", function()
+      require("dap").toggle_breakpoint()
+    end, { desc = "Breakpoint" })
+
+    vim.keymap.set("n", "<leader>g", function()
+      vim.lsp.buf.code_action({ apply = true })
+    end, { desc = "Code Action (auto import etc)" })
+  end,
 }

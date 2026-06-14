@@ -34,6 +34,13 @@ abbr -a snvim sudo nvim
 
 abbr -a cd z
 
+
+# docker
+abbr -a dcd docker compose down
+abbr -a dcu docker compose up -d
+abbr -a dc docker compose
+abbr -a dce docker compose exec db mariadb -u root -p
+
 alias ls="eza --icons"
 alias li="eza -la --icons"
 alias lt="eza --tree --icons -L 2"
