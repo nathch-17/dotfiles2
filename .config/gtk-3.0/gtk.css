@@ -1,0 +1,42 @@
+/* Thunar macOS style & transparency */
+window.thunar,
+.thunar,
+.thunar window,
+.thunar .sidebar,
+.thunar .view,
+.thunar toolbar,
+.thunar menubar,
+.thunar grid,
+.thunar paned,
+.thunar box,
+.thunar treeview.view {
+    background-color: rgba(11, 11, 14, 0.85);
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* Make sure inner elements don't stack opacity */
+.thunar grid,
+.thunar paned,
+.thunar box,
+.thunar toolbar,
+.thunar menubar,
+.thunar .view,
+.thunar scrolledwindow,
+.thunar .sidebar {
+    background-color: transparent;
+}
+
+/* Selected items */
+.thunar .view:selected,
+.thunar treeview.view:selected {
+    background-color: rgba(235, 188, 186, 0.3); /* Rosé Pine accent */
+    border-radius: 8px;
+}
+
+/* Hide ugly borders for macOS style */
+.thunar paned > separator {
+    background-color: transparent;
+    min-width: 0px;
+}
