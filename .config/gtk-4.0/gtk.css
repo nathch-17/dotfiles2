@@ -1,12 +1,11 @@
-@import url('/usr/share/themes/adw-gtk3/gtk-4.0/gtk.css');
+@import url("file:///usr/share/themes/adw-gtk3/gtk-4.0/gtk.css");
 
-/* Nautilus macOS style & transparency */
 window.nautilus-window,
 window.nautilus-window > decoration,
 window.nautilus-window > decoration-overlay,
 .nautilus-window {
-    background-color: rgba(11, 11, 14, 0.85) !important;
-    background-image: none !important;
+    background-color: rgba(11, 11, 14, 0.85);
+    background-image: none;
 }
 
 window.nautilus-window box,
@@ -21,15 +20,35 @@ window.nautilus-window treeview,
 window.nautilus-window scrollbar,
 window.nautilus-window scrolledwindow,
 window.nautilus-window headerbar {
-    background-color: transparent !important;
-    background-image: none !important;
-    box-shadow: none !important;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
 }
 
-/* Selected items */
 window.nautilus-window .view:selected,
 window.nautilus-window listview:selected,
 window.nautilus-window treeview:selected {
-    background-color: rgba(235, 188, 186, 0.3) !important; /* Rosé Pine accent */
+    background-color: rgba(235, 188, 186, 0.3);
     border-radius: 8px;
+}
+
+/* Libadwaita variables for transparency */
+window, .background, .solid-background, .view {
+    background-color: transparent;
+    background-image: none;
+}
+
+window {
+    background-color: rgba(11, 11, 14, 0.85);
+}
+
+window.nautilus-window view, 
+window.nautilus-window listview, 
+window.nautilus-window treeview,
+window.nautilus-window flap,
+window.nautilus-window stack,
+window.nautilus-window headerbar,
+window.nautilus-window .sidebar {
+    background: transparent;
+    background-color: transparent;
 }
