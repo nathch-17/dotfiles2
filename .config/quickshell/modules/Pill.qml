@@ -11,17 +11,20 @@ Rectangle {
     property color accent: Theme.accent
     property bool expanded: false
     property string panelMode: ""
+    property int labelSize: 11
+    property int iconSize: 13
+    property int pillHeight: 26
 
     signal clicked()
 
-    height: 26
+    height: root.pillHeight
     width: contentRow.width + 20
     radius: Theme.radiusPill
 
     color: mouseArea.containsMouse
         ? Theme.bgHover
         : Theme.bgPill
-    border.color: expanded ? root.accent : Theme.border
+    border.color: expanded ? root.accent : "transparent"
     border.width: 1
 
     Behavior on width { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
@@ -36,7 +39,7 @@ Rectangle {
         Text {
             text: root.icon                          // ← root, pas pill
             color: root.accent
-            font.pixelSize: 13
+            font.pixelSize: root.iconSize
             font.family: Theme.fontIcon
             anchors.verticalCenter: parent.verticalCenter
             visible: text.length > 0
@@ -45,7 +48,7 @@ Rectangle {
         Text {
             text: root.label                         // ← root
             color: Theme.text                        // ← thème
-            font.pixelSize: 11
+            font.pixelSize: root.labelSize
             font.family: Theme.fontMono
             anchors.verticalCenter: parent.verticalCenter
             visible: text.length > 0

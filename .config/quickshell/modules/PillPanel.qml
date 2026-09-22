@@ -42,8 +42,8 @@ PanelWindow {
         anchors.fill: parent
         anchors.margins: 6
         radius: 14
-        color: "#e60a0a0f"
-        border.color: "#33ff7a1a"
+        color: Theme.bgPanel
+        border.color: Theme.border
         border.width: 1
 
         // bloque la propagation du clic
@@ -81,7 +81,7 @@ PanelWindow {
             anchors.leftMargin: 14
             height: 2
             radius: 1
-            color: "#ff7a1a"
+            color: Theme.accent
             opacity: 0.85
             width: root.isOpen ? (parent.width - 28) : 0
 
@@ -160,22 +160,22 @@ PanelWindow {
 
     // ---------- styles partagés ----------
     component SectionTitle : Text {
-        color: "#ff7a1a"
+        color: Theme.accent
         font.pixelSize: 11
-        font.family: "JetBrainsMono Nerd Font"
+        font.family: Theme.fontMain
         font.letterSpacing: 1.5
         font.capitalization: Font.AllUppercase
     }
     component Header : Text {
-        color: "#f5f5f5"
+        color: Theme.textBright
         font.pixelSize: 18
-        font.family: "JetBrainsMono Nerd Font"
+        font.family: Theme.fontMain
         font.weight: Font.Medium
     }
     component Sub : Text {
-        color: "#888"
+        color: Theme.textDim
         font.pixelSize: 11
-        font.family: "JetBrainsMono Nerd Font"
+        font.family: Theme.fontMain
     }
 
     // ---------- WIFI ----------
@@ -261,7 +261,7 @@ Item {
         width: 44; height: 22; radius: 11
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
-        color: wifiCol.enabled ? "#ff7a1a" : "#333"
+        color: wifiCol.enabled ? Theme.accent : Theme.bgDeep
         Behavior on color { ColorAnimation { duration: 200 } }
 
         Rectangle {
@@ -315,8 +315,8 @@ Timer {
                     width: ListView.view.width
                     height: 44
                     radius: 8
-                    color: ma.containsMouse ? "#15ffffff" : (modelData.active ? "#1aff7a1a" : "transparent")
-                    border.color: modelData.active ? "#55ff7a1a" : "transparent"
+                    color: ma.containsMouse ? Theme.bgHover : (modelData.active ? Theme.bgPill : "transparent")
+                    border.color: modelData.active ? Theme.border : "transparent"
                     border.width: 1
 
                     Behavior on color { ColorAnimation { duration: 120 } }
@@ -335,8 +335,8 @@ Timer {
                                 if (modelData.signal > 25) return "󰤢"
                                 return "󰤟"
                             }
-                            color: modelData.active ? "#ff7a1a" : "#e8e8e8"
-                            font.family: "JetBrainsMono Nerd Font"
+                            color: modelData.active ? Theme.accent : Theme.text
+                            font.family: Theme.fontMain
                             font.pixelSize: 16
                         }
 
@@ -345,14 +345,14 @@ Timer {
                             spacing: 2
                             Text {
                                 text: modelData.ssid
-                                color: "#e8e8e8"
-                                font.family: "JetBrainsMono Nerd Font"
+                                color: Theme.text
+                                font.family: Theme.fontMain
                                 font.pixelSize: 12
                             }
                             Text {
                                 text: (modelData.secure ? "󰌾 " : "") + modelData.signal + "%"
-                                color: "#888"
-                                font.family: "JetBrainsMono Nerd Font"
+                                color: Theme.textDim
+                                font.family: Theme.fontMain
                                 font.pixelSize: 10
                             }
                         }
@@ -363,7 +363,7 @@ Timer {
                             visible: modelData.active
                             anchors.verticalCenter: parent.verticalCenter
                             text: "✓"
-                            color: "#ff7a1a"
+                            color: Theme.accent
                             font.pixelSize: 14
                         }
                     }
@@ -481,14 +481,14 @@ Component {
                 spacing: 10
                 Text {
                     text: "󰂯"
-                    color: btCol.powered ? "#a0c4ff" : "#666"
+                    color: btCol.powered ? Theme.accentSoft : Theme.textMuted
                     font.pixelSize: 20
                     font.family: "Symbols Nerd Font"
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 Text {
                     text: "Bluetooth"
-                    color: "#fff"
+                    color: Theme.textBright
                     font.pixelSize: 18
                     font.bold: true
                     anchors.verticalCenter: parent.verticalCenter
@@ -503,14 +503,14 @@ Component {
                 width: 40
                 height: 22
                 radius: 11
-                color: btCol.powered ? "#a0c4ff" : "#3a3a3a"
+                color: btCol.powered ? Theme.accentSoft : Theme.bgDeep
                 Behavior on color { ColorAnimation { duration: 150 } }
 
                 Rectangle {
                     width: 18
                     height: 18
                     radius: 9
-                    color: "#fff"
+                    color: Theme.textBright
                     y: 2
                     x: btCol.powered ? 20 : 2
                     Behavior on x { NumberAnimation { duration: 150; easing.type: Easing.OutCubic } }
@@ -547,7 +547,7 @@ Component {
                 width: parent.width
                 height: 38
                 radius: 8
-                color: devMouse.containsMouse ? "#1f1f1f" : "transparent"
+                color: devMouse.containsMouse ? Theme.bgHover : "transparent"
                 Behavior on color { ColorAnimation { duration: 120 } }
 
                 Row {
@@ -558,14 +558,14 @@ Component {
 
                     Text {
                         text: modelData.connected ? "✓" : "·"
-                        color: modelData.connected ? "#a0c4ff" : "#555"
+                        color: modelData.connected ? Theme.accentSoft : Theme.textMuted
                         font.pixelSize: 16
                         width: 12
                         anchors.verticalCenter: parent.verticalCenter
                     }
                     Text {
                         text: modelData.name
-                        color: "#ddd"
+                        color: Theme.text
                         font.pixelSize: 14
                         anchors.verticalCenter: parent.verticalCenter
                     }
@@ -642,9 +642,9 @@ Component {
         }
         Text {
             text: batCol.pct + "%"
-            color: "#ff7a1a"
+            color: Theme.accent
             font.pixelSize: 36
-            font.family: "JetBrainsMono Nerd Font"
+            font.family: Theme.fontMain
         }
         Sub {
             text: {
@@ -698,14 +698,14 @@ Component {
 
             Text {
                 text: clockCol.pad(clockCol.now.getHours()) + ":" + clockCol.pad(clockCol.now.getMinutes())
-                color: "#ff8c42"
+                color: Theme.accent
                 font.pixelSize: 56
                 font.bold: true
                 anchors.bottom: parent.bottom
             }
             Text {
                 text: ":" + clockCol.pad(clockCol.now.getSeconds())
-                color: "#ff8c42"
+                color: Theme.accent
                 opacity: 0.6
                 font.pixelSize: 28
                 font.bold: true
@@ -719,8 +719,8 @@ Component {
             width: parent.width
             height: calGrid.height + 50
             radius: 10
-            color: "#15100c"
-            border.color: "#2a1f17"
+            color: Theme.bgDeep
+            border.color: Theme.border
             border.width: 1
 
             property int viewYear: clockCol.now.getFullYear()
@@ -751,7 +751,7 @@ Component {
                                             "July","August","September","October","November","December"]
                             return months[parent.parent.parent.viewMonth] + " " + parent.parent.parent.viewYear
                         }
-                        color: "#ddd"
+                        color: Theme.text
                         font.pixelSize: 13
                         font.bold: true
                     }
@@ -763,7 +763,7 @@ Component {
 
                         Text {
                             text: "‹"
-                            color: "#ff8c42"
+                            color: Theme.accent
                             font.pixelSize: 18
                             MouseArea {
                                 anchors.fill: parent
@@ -777,7 +777,7 @@ Component {
                         }
                         Text {
                             text: "›"
-                            color: "#ff8c42"
+                            color: Theme.accent
                             font.pixelSize: 18
                             MouseArea {
                                 anchors.fill: parent
@@ -803,7 +803,7 @@ Component {
                             Text {
                                 anchors.centerIn: parent
                                 text: modelData
-                                color: "#666"
+                                color: Theme.textMuted
                                 font.pixelSize: 11
                                 font.bold: true
                             }
@@ -843,12 +843,12 @@ Component {
                                 width: 22
                                 height: 22
                                 radius: 11
-                                color: parent.isToday ? "#ff8c42" : "transparent"
+                                color: parent.isToday ? Theme.accent : "transparent"
                             }
                             Text {
                                 anchors.centerIn: parent
                                 text: parent.valid ? parent.dayNum : ""
-                                color: parent.isToday ? "#000" : "#ccc"
+                                color: parent.isToday ? "#000" : Theme.text
                                 font.pixelSize: 12
                                 font.bold: parent.isToday
                             }
@@ -889,9 +889,9 @@ Component {
                 text: (Pipewire.defaultAudioSink?.audio?.muted ?? false) ? "󰝟"
                     : (volSlider.value > 0.5 ? "󰕾"
                     : volSlider.value > 0   ? "󰖀" : "󰕿")
-                color: muteMa.containsMouse ? "#ff7a1a" : "#e8e8e8"
+                color: muteMa.containsMouse ? Theme.accent : Theme.text
                 font.pixelSize: 16
-                font.family: "JetBrainsMono Nerd Font"
+                font.family: Theme.fontMain
                 anchors.verticalCenter: parent.verticalCenter
 
                 MouseArea {
@@ -908,9 +908,9 @@ Component {
             }
             Text {
                 text: "Volume"
-                color: "#e8e8e8"
+                color: Theme.text
                 font.pixelSize: 13
-                font.family: "JetBrainsMono Nerd Font"
+                font.family: Theme.fontMain
                 anchors.verticalCenter: parent.verticalCenter
             }
         }
@@ -938,12 +938,12 @@ Row {
                 x: volSlider.leftPadding
                 y: volSlider.topPadding + volSlider.availableHeight / 2 - height / 2
                 width: volSlider.availableWidth; height: 4
-                radius: 2; color: "#25ffffff"
+                radius: 2; color: Theme.bgPill
                 Rectangle {
                     width: volSlider.visualPosition * parent.width
                     height: parent.height; radius: 2
                     color: (Pipewire.defaultAudioSink?.audio?.muted ?? false)
-                        ? "#666" : "#ff7a1a"
+                        ? Theme.textMuted : Theme.accent
                 }
             }
             handle: Rectangle {
@@ -951,8 +951,8 @@ Row {
                 y: volSlider.topPadding + volSlider.availableHeight / 2 - height / 2
                 width: 14; height: 14; radius: 7
                 color: (Pipewire.defaultAudioSink?.audio?.muted ?? false)
-                    ? "#666" : "#ff7a1a"
-                border.color: "#1a1a1a"; border.width: 2
+                    ? Theme.textMuted : Theme.accent
+                border.color: "transparent"; border.width: 2
             }
         }
 
@@ -972,8 +972,8 @@ Row {
     Text {
         id: valLabel
         text: Math.round(volSlider.value * 100) + "%"
-        color: "#e8e8e8"; font.pixelSize: 12
-        font.family: "JetBrainsMono Nerd Font"
+        color: Theme.text; font.pixelSize: 12
+        font.family: Theme.fontMain
         anchors.verticalCenter: parent.verticalCenter
     }
 }
@@ -1014,11 +1014,11 @@ Row {
                 radius: 6
                 color: {
                     const isDefault = modelData === Pipewire.defaultAudioSink
-                    if (isDefault) return "#22ff7a1a"
-                    return devMa.containsMouse ? "#15ffffff" : "transparent"
+                    if (isDefault) return Theme.bgPill
+                    return devMa.containsMouse ? Theme.bgHover : "transparent"
                 }
                 border.color: modelData === Pipewire.defaultAudioSink
-                    ? "#ff7a1a" : "transparent"
+                    ? Theme.accent : "transparent"
                 border.width: 1
                 Behavior on color { ColorAnimation { duration: 120 } }
 
@@ -1032,16 +1032,16 @@ Row {
                         anchors.verticalCenter: parent.verticalCenter
                         text: modelData === Pipewire.defaultAudioSink ? "󰄬" : "󰓃"
                         color: modelData === Pipewire.defaultAudioSink
-                            ? "#ff7a1a" : "#888"
+                            ? Theme.accent : Theme.textDim
                         font.pixelSize: 12
-                        font.family: "JetBrainsMono Nerd Font"
+                        font.family: Theme.fontMain
                     }
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         text: modelData.description || modelData.name
-                        color: "#e8e8e8"
+                        color: Theme.text
                         font.pixelSize: 11
-                        font.family: "JetBrainsMono Nerd Font"
+                        font.family: Theme.fontMain
                         elide: Text.ElideRight
                         width: parent.width - 30
                     }

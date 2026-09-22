@@ -23,21 +23,29 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("quickshell")
   hl.exec_cmd("awww-daemon")
   hl.exec_cmd("hyprctl setcursor Adwaita 20")
-  hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+  hl.exec_cmd(
+    "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XCURSOR_THEME XCURSOR_SIZE")
   hl.exec_cmd("hypridle")
   hl.exec_cmd("touch /tmp/qs_vol")
   hl.exec_cmd("QML_XHR_ALLOW_FILE_READ=1 quickshell -p ~/.config/quickshell/mon_theme/shell.qml")
-  hl.exec_cmd("sddm")
+  -- hl.exec_cmd("sddm")
   hl.exec_cmd("snappy-switcher --daemon")
 end)
 
+hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-size 20 &")
+hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita' &")
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
 -------------------------------
 hl.env("MOZ_ENABLE_WAYLAND", "1")
-hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XCURSOR_SIZE", "20")
+hl.env("HYPRCURSOR_SIZE", "20")
+
+hl.env("XCURSOR_THEME", "Adwaita")
+hl.env("HYPRCURSOR_THEME", "Adwaita")
+
 hl.env("LANG", "fr_FR.UTF-8")
+
 
 -----------------------
 ---- LOOK AND FEEL ----
@@ -48,7 +56,7 @@ hl.config({
     gaps_out = 5,
     border_size = 1,
     col = {
-      active_border = { colors = { "rgba(e8833aff)", "rgba(ff9d52ff)", "rgba(ffc94dff)" }, angle = 45 },
+      active_border = { colors = { "rgba(ffffffff)", "rgba(f2f2f2ff)", "rgba(e6e6e6ff)" }, angle = 45 },
       inactive_border = "rgba(414868aa)",
     },
     resize_on_border = false,
@@ -264,12 +272,6 @@ hl.window_rule({
 })
 
 hl.window_rule({
-  name = "thunar-transparency",
-  match = { class = "^(thunar)$" },
-  opacity = "0.85 0.85",
-})
-
-hl.window_rule({
   name = "deezer-transparency",
   match = { class = "^(deezer-desktop)$" },
   opacity = "0.85 0.80",
@@ -314,3 +316,4 @@ hl.layer_rule({
   ignore_alpha = 0.3,
   animation = "fade",
 })
+

@@ -21,7 +21,7 @@ Row {
         height: 28
         radius: Theme.radiusPill
         color: ma.containsMouse ? Theme.bgHover : Theme.bgPill
-        border.color: ma.containsMouse ? btn.hoverColor : Theme.border
+        border.color: ma.containsMouse ? btn.hoverColor : "transparent"
         border.width: 1
         Behavior on color { ColorAnimation { duration: Theme.animFast } }
         Behavior on border.color { ColorAnimation { duration: Theme.animFast } }
@@ -76,7 +76,7 @@ Row {
             if (cpuMa.containsMouse) return Theme.danger
             if (cpuPill.cpuUsage > 80) return Theme.danger
             if (cpuPill.cpuUsage > 50) return Theme.warn
-            return Theme.border
+            return "transparent"
         }
         border.width: 1
         anchors.verticalCenter: parent.verticalCenter

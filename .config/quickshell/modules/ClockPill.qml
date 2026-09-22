@@ -1,11 +1,15 @@
-
 import QtQuick
 import "."
 
 Pill {
     id: pill
-    icon: "󰥔"
+    // Pas d'icône pour l'horloge
+    icon: ""
     accent: Theme.accentGlow
+    
+    // Agrandissement
+    labelSize: 15
+    pillHeight: 30
     
     property var now: new Date()
     label: Qt.formatDateTime(now, "HH:mm")
