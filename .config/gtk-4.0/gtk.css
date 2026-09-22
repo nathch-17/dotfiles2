@@ -1,0 +1,35 @@
+@import url('/usr/share/themes/adw-gtk3/gtk-4.0/gtk.css');
+
+/* Nautilus macOS style & transparency */
+window.nautilus-window,
+window.nautilus-window > decoration,
+window.nautilus-window > decoration-overlay,
+.nautilus-window {
+    background-color: rgba(11, 11, 14, 0.85) !important;
+    background-image: none !important;
+}
+
+window.nautilus-window box,
+window.nautilus-window paned,
+window.nautilus-window grid,
+window.nautilus-window stack,
+window.nautilus-window .sidebar,
+window.nautilus-window .navigation-sidebar,
+window.nautilus-window .view,
+window.nautilus-window listview,
+window.nautilus-window treeview,
+window.nautilus-window scrollbar,
+window.nautilus-window scrolledwindow,
+window.nautilus-window headerbar {
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+/* Selected items */
+window.nautilus-window .view:selected,
+window.nautilus-window listview:selected,
+window.nautilus-window treeview:selected {
+    background-color: rgba(235, 188, 186, 0.3) !important; /* Rosé Pine accent */
+    border-radius: 8px;
+}
