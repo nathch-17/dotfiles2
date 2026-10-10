@@ -52,8 +52,8 @@ hl.env("LANG", "fr_FR.UTF-8")
 -----------------------
 hl.config({
   general = {
-    gaps_in = 5,
-    gaps_out = 5,
+    gaps_in = 3,
+    gaps_out = 0,
     border_size = 1,
     col = {
       active_border = { colors = { "rgba(ffffffff)", "rgba(f2f2f2ff)", "rgba(e6e6e6ff)" }, angle = 45 },
@@ -317,3 +317,11 @@ hl.layer_rule({
   animation = "fade",
 })
 
+
+
+hl.layer_rule({
+  name = "snappy-blur",
+  match = { namespace = "^(snappy-switcher)$" },
+  blur = true,
+  ignore_alpha = 0.5,
+})

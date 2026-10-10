@@ -17,31 +17,29 @@ return {
   },
   config = function()
     local secrets = require("utils.secrets")
-    local mammouth_key = secrets.read("~/.config/mammouth/api_key")
+    -- Pense à créer ce fichier et à y mettre ta clé API Google Gemini
+    local gemini_key = secrets.read("~/.config/gemini/api_key")
 
     require("codecompanion").setup({
       adapters = {
-        http = {
-          mammouth = function()
-            return require("codecompanion.adapters").extend("openai_compatible", {
-              env = {
-                url = "https://api.mammouth.ai",
-                api_key = mammouth_key,
-                chat_url = "/v1/chat/completions",
-              },
-              schema = {
-                model = {
-                  default = "gpt-4.1",
-                },
-              },
-            })
-          end,
-        },
+        gemini = function()
+          return require("codecompanion.adapters").extend("gemini", {
+            env = {
+              api_key = gemini_key,
+            },
+            -- Optionnel : Tu peux forcer un modèle spécifique ici (ex: gemini-1.5-pro)
+            -- schema = {
+            --   model = {
+            --     default = "gemini-1.5-flash",
+            --   },
+            -- },
+          })
+        end,
       },
       strategies = {
-        chat   = { adapter = "mammouth" },
-        inline = { adapter = "mammouth" },
-        agent  = { adapter = "mammouth" },
+        chat   = { adapter = "gemini" },
+        inline = { adapter = "gemini" },
+        agent  = { adapter = "gemini" },
       },
     })
   end,

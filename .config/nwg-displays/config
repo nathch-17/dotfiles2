@@ -5,5 +5,5 @@
   "custom-mode": [],
   "use-desc": false,
   "confirm-timeout": 10,
-  "profile-bound-wallpapers": true
+  "profile-bound-wallpapers": false
 }

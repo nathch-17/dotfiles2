@@ -55,7 +55,7 @@ set -gx VISUAL nvim
 # S'assurer que les caractères Unicode/Nerd Font s'affichent bien
 set -gx LANG fr_FR.UTF-8
 set -gx LC_ALL fr_FR.UTF-8
-#starship init fish | source
+starship init fish | source
 
 # Mammouth Code
 set -gx PATH $HOME/.mammouth/bin $PATH
