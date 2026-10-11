@@ -114,5 +114,4 @@ config.keys = {
 config.unix_domains = {
   { name = 'unix' },
 }
-config.default_domain = 'unix'
 return config
