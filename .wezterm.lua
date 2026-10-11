@@ -2,7 +2,6 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 local colors_file = wezterm.home_dir .. "/.cache/wallust/wezterm.lua"
-
 local function file_exists(name)
   local f = io.open(name, "r")
   if f ~= nil then
@@ -78,5 +77,42 @@ config.enable_wayland = false
 
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
+-- 1. Définir le Leader key (comme le prefix de tmux : Ctrl+B)
+config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 1000 }
 
+config.keys = {
+  -- Split vertical (gauche/droite) : Ctrl+B puis %
+  {
+    key = 'v',
+    mods = 'ALT',
+    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+  },
+  -- Split horizontal (haut/bas) : Ctrl+B puis "
+  {
+    key = 'h',
+    mods = 'ALT',
+    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+  },
+  -- Naviguer entre les panneaux avec les flèches : Ctrl+B puis Flèche
+  { key = 'LeftArrow',  mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Left' },
+  { key = 'RightArrow', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Right' },
+  { key = 'UpArrow',    mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Up' },
+  { key = 'DownArrow',  mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Down' },
+
+  -- Fermer le panneau courant : Ctrl+B puis x
+  { key = 'x',          mods = 'ALT',    action = wezterm.action.CloseCurrentPane { confirm = true } },
+
+  {
+    key = 'd',
+    mods = 'ALT',
+    action = wezterm.action.DetachDomain 'CurrentPaneDomain',
+
+  },
+}
+
+-- Active le serveur de multiplexage local par défaut
+config.unix_domains = {
+  { name = 'unix' },
+}
+config.default_domain = 'unix'
 return config
