@@ -114,4 +114,5 @@ config.keys = {
 config.unix_domains = {
   { name = 'unix' },
 }
+config.enable_wayland = false
 return config

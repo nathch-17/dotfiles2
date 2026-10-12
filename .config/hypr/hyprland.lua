@@ -11,8 +11,8 @@ require("monitors")
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
-local terminal = "wezterm"
-local fileManager = "yazi-gui"
+local terminal = "wezterm connect unix"
+local fileManager = "nautilus"
 local menu = "qs ipc call launcher toggle"
 local EDITOR = "nvim"
 
@@ -193,6 +193,10 @@ hl.bind(mainMod .. " + egrave", hl.dsp.focus({ workspace = 7 }))
 hl.bind(mainMod .. " + underscore", hl.dsp.focus({ workspace = 8 }))
 hl.bind(mainMod .. " + ccedilla", hl.dsp.focus({ workspace = 9 }))
 hl.bind(mainMod .. " + agrave", hl.dsp.focus({ workspace = 10 }))
+hl.bind(mainMod .. " + l", hl.dsp.focus({ workspace = "+1" }))
+
+hl.bind(mainMod .. " + h", hl.dsp.focus({ workspace = "-1" }))
+
 
 hl.bind(mainMod .. " + SHIFT + ampersand", hl.dsp.window.move({ workspace = 1 }))
 hl.bind(mainMod .. " + SHIFT + eacute", hl.dsp.window.move({ workspace = 2 }))
@@ -204,7 +208,6 @@ hl.bind(mainMod .. " + SHIFT + egrave", hl.dsp.window.move({ workspace = 7 }))
 hl.bind(mainMod .. " + SHIFT + underscore", hl.dsp.window.move({ workspace = 8 }))
 hl.bind(mainMod .. " + SHIFT + ccedilla", hl.dsp.window.move({ workspace = 9 }))
 hl.bind(mainMod .. " + SHIFT + agrave", hl.dsp.window.move({ workspace = 10 }))
-
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
