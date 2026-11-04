@@ -60,4 +60,10 @@ starship init fish | source
 # Mammouth Code
 set -gx PATH $HOME/.mammouth/bin $PATH
 
+# Fastfetch au démarrage
+if status is-interactive
+    fastfetch
+end
+
+
 

@@ -1,0 +1,25 @@
+{
+  "iconSize": 46,
+  "magnification": 1.15,
+  "magnificationRadius": 95,
+  "margin": 6,
+  "backgroundOpacity": 0.8,
+  "position": "bottom",
+  "fullLength": false,
+  "reserveSpace": false,
+  "autoHide": true,
+  "clickAction": "focus-or-launch",
+  "pinned": [
+    "org.gnome.Nautilus",
+    "kitty",
+    "zen",
+    "firefox",
+    "visual-studio-code-electron",
+    "discord",
+    "spotify",
+    "jetbrains-idea",
+    "obsidian",
+    "FFPWA-01M6DQHCXWEF0E0WF0TVE38VBW",
+    "FFPWA-01M6KBQS1NPGAKDA237T9WRJ0H"
+  ]
+}

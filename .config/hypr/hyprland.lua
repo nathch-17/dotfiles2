@@ -11,7 +11,7 @@ require("monitors")
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
-local terminal = "wezterm connect unix"
+local terminal = "kitty"
 local fileManager = "nautilus"
 local menu = "qs ipc call launcher toggle"
 local EDITOR = "nvim"
@@ -19,7 +19,13 @@ local EDITOR = "nvim"
 -------------------
 ---- AUTOSTART ----
 -------------------
+-- Dock (hyprland-dock) : passer a false pour la desactiver au demarrage
+local ENABLE_DOCK = true
+
 hl.on("hyprland.start", function()
+  if ENABLE_DOCK then
+    hl.exec_cmd("QS_ICON_THEME=WhiteSur ~/.local/bin/hyprland-dock --daemonize")
+  end
   hl.exec_cmd("quickshell")
   hl.exec_cmd("awww-daemon")
   hl.exec_cmd("hyprctl setcursor Adwaita 20")
@@ -55,9 +61,10 @@ hl.config({
     gaps_in = 3,
     gaps_out = 0,
     border_size = 1,
+    -- Bordures façon macOS : fin liseré gris translucide
     col = {
-      active_border = { colors = { "rgba(ffffffff)", "rgba(f2f2f2ff)", "rgba(e6e6e6ff)" }, angle = 45 },
-      inactive_border = "rgba(414868aa)",
+      active_border = "rgba(8e8e93aa)",
+      inactive_border = "rgba(3a3a3c66)",
     },
     resize_on_border = false,
     allow_tearing = false,
@@ -75,7 +82,12 @@ hl.config({
       size = 8,
       passes = 3,
       ignore_opacity = true,
-      new_optimizations = true,
+      new_optimizations = false,
+      variant = "water",
+    },
+
+    wobble = {
+      enabled = true,
     },
 
     shadow = {
@@ -89,6 +101,8 @@ hl.config({
   animations = {
     enabled = true,
   },
+
+
 })
 
 hl.curve("snappy", { type = "bezier", points = { { 0.20, 1.00 }, { 0.30, 1.00 } } })
@@ -120,6 +134,8 @@ hl.animation({ leaf = "layersIn", enabled = true, speed = 3, bezier = "bounce", 
 hl.animation({ leaf = "layersOut", enabled = true, speed = 2, bezier = "snappy", style = "slide" })
 
 hl.config({
+
+
   master = {
     new_status = "master",
   },
@@ -307,6 +323,12 @@ hl.layer_rule({
 })
 
 hl.window_rule({
+  name = "kitty-blur",
+  match = { class = "^(kitty)$" },
+  no_blur = false,
+})
+
+hl.window_rule({
   name = "wezterm-bg",
   match = { class = "^(wezterm)$" },
   opacity = "0.8 0.75",
@@ -328,3 +350,8 @@ hl.layer_rule({
   blur = true,
   ignore_alpha = 0.5,
 })
+
+-- Toggle du dock : SUPER + SHIFT + D
+hl.bind(mainMod .. " + SHIFT + D",
+  hl.dsp.exec_cmd(
+    "pgrep -f 'share/hyprland-dock' >/dev/null && ~/.local/bin/hyprland-dock stop || QS_ICON_THEME=WhiteSur ~/.local/bin/hyprland-dock --daemonize"))
