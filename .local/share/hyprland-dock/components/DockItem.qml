@@ -95,7 +95,15 @@ Item {
     return null
   }
 
+  // Anti double-lancement : Zen met plusieurs secondes avant d'afficher sa fenetre,
+  // un second clic pendant ce temps ouvrait une deuxieme fenetre.
+  property double lastLaunchMs: 0
+
   function launch() {
+    var now = Date.now()
+    if (now - lastLaunchMs < 10000)
+      return
+    lastLaunchMs = now
     if (entry)
       entry.execute()
     else
